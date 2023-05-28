@@ -24,11 +24,25 @@ function storeInfo(e){
     newItem.className='item';
     newItem.appendChild(document.createTextNode(key));
 
-    let newBtn= document.createElement('button');
-    newBtn.className='delete';
-    newBtn.appendChild(document.createTextNode('delete'));
+    let newBtn1= document.createElement('button');
+    newBtn1.className='delete';
+    newBtn1.appendChild(document.createTextNode('delete'));
 
-    newItem.appendChild(newBtn);
+    newItem.appendChild(newBtn1);
+
+    let newBtn2= document.createElement('button');
+    newBtn2.className='edit';
+    newBtn2.appendChild(document.createTextNode('edit'));
+
+    newBtn2.onclick=(e) =>{
+        let li = e.target.parentElement;
+        localStorage.removeItem(li.firstChild.textContent);
+        listItem.removeChild(li);
+        document.getElementById('name').value=obj.name;
+        document.getElementById('email').value=obj.email;
+    }
+
+    newItem.appendChild(newBtn2);
 
     listItem.appendChild(newItem);
 
