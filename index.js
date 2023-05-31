@@ -19,7 +19,7 @@ function storeInfo(e) {
     let key = userName + " " + userEmail;
     axios.post('https://crudcrud.com/api/91444e7c3330458b82961530a3cf0df9/appoinment', obj)
         .then((res) => {
-            newUser(key);
+            newUser(obj);
             console.log(res.data)
         })
 
@@ -69,10 +69,14 @@ function newUser(obj) {
     newBtn2.onclick = (e) => {
         let li = e.target.parentElement;
         //localStorage.removeItem(li.firstChild.textContent);
-        
         listItem.removeChild(li);
         document.getElementById('name').value = obj.name;
         document.getElementById('email').value = obj.email;
+        var id = obj._id;
+        console.log(id);
+        axios.delete('https://crudcrud.com/api/91444e7c3330458b82961530a3cf0df9/appoinment/'+id)
+            .then((res)=>{})
+            .catch((err)=>console.log(err));
     }
 
     listItem.appendChild(newItem);
